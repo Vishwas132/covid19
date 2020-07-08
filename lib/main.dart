@@ -1,4 +1,4 @@
-import 'package:covid19/pages/HomePage.dart';
+import 'package:covid19/pages/Splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
