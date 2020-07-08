@@ -17,11 +17,24 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Image(
-          image: AssetImage('images/image.jpg'),
-          fit: BoxFit.fitWidth,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.amber[50],
+        body: Center(
+          child: Container(
+            height: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(100),
+              border: Border.all(
+                color: Colors.grey,
+                width: 2,
+              ),
+              image: DecorationImage(
+                image: AssetImage('images/image.jpg'),
+              ),
+            ),
+          ),
         ),
       ),
     );

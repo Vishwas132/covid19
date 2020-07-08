@@ -46,11 +46,7 @@ class CountrySearch extends SearchDelegate<Country> {
               child: Text('No Suggestion'),
             ),
           )
-        : ResultPage(
-            countries: countries,
-            map: map,
-            query: query,
-          );
+        : ResultPage(map: map, query: query);
     return searchResult;
   }
 
@@ -65,25 +61,45 @@ class CountrySearch extends SearchDelegate<Country> {
           child: ListView.builder(
             itemBuilder: (context, index) {
               return Container(
-                child: ListTile(
-                    leading: CachedNetworkImage(
-                      imageUrl: map[suggestion[index]].flag,
-                      width: 40.0,
-                    ),
-                    title: Text(
-                      suggestion[index],
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    onTap: () {
-                      query = suggestion[index];
-                      showResults(context);
-                    }),
+                child: suggestionList(index, context),
               );
             },
             itemCount: suggestion.length,
           ),
         ),
       ],
+    );
+  }
+
+  ListTile suggestionList(int index, BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(
+            color: Colors.grey,
+            width: 2.0,
+          ),
+        ),
+        child: CachedNetworkImage(
+          imageUrl: map[suggestion[index]].flag,
+          imageBuilder: (context, imageProvider) => CircleAvatar(
+            backgroundColor: Colors.transparent,
+            backgroundImage: imageProvider,
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+      ),
+      title: Text(
+        suggestion[index],
+        style: TextStyle(fontSize: 20.0),
+      ),
+      onTap: () {
+        query = suggestion[index];
+        showResults(context);
+      },
     );
   }
 }

@@ -6,13 +6,14 @@ class Country {
   final String active;
   final String flag;
 
-  Country(
-      {this.name,
-      this.cases,
-      this.deaths,
-      this.recovered,
-      this.active,
-      this.flag});
+  Country({
+    this.name,
+    this.cases,
+    this.deaths,
+    this.recovered,
+    this.active,
+    this.flag,
+  });
 
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
