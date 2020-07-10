@@ -42,8 +42,8 @@ class ResultPage extends StatelessWidget {
   }
 }
 
-class Active extends StatelessWidget {
-  const Active({
+class CountryName extends StatelessWidget {
+  const CountryName({
     Key key,
     @required this.map,
     @required this.query,
@@ -56,36 +56,49 @@ class Active extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Active",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurpleAccent),
-              ),
-              Text(
-                map[query].active.toString(),
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      map[query].name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: map[query].flag,
+                    imageBuilder: (context, imageProvider) => CircleAvatar(
+                      radius: 27.0,
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: imageProvider,
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ])),
     );
   }
 }
 
-class Recovered extends StatelessWidget {
-  const Recovered({
+class Cases extends StatelessWidget {
+  const Cases({
     Key key,
     @required this.map,
     @required this.query,
@@ -105,16 +118,17 @@ class Recovered extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Recovered",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green),
-              ),
-              Text(
-                map[query].recovered.toString(),
+                "Cases",
                 style: TextStyle(
                   fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+              Text(
+                map[query].cases.toString(),
+                style: TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               )
@@ -156,7 +170,7 @@ class Deaths extends StatelessWidget {
               Text(
                 map[query].deaths.toString(),
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               )
@@ -168,8 +182,8 @@ class Deaths extends StatelessWidget {
   }
 }
 
-class Cases extends StatelessWidget {
-  const Cases({
+class Recovered extends StatelessWidget {
+  const Recovered({
     Key key,
     @required this.map,
     @required this.query,
@@ -189,17 +203,16 @@ class Cases extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Cases",
+                "Recovered",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green),
               ),
               Text(
-                map[query].cases.toString(),
+                map[query].recovered.toString(),
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               )
@@ -211,8 +224,8 @@ class Cases extends StatelessWidget {
   }
 }
 
-class CountryName extends StatelessWidget {
-  const CountryName({
+class Active extends StatelessWidget {
+  const Active({
     Key key,
     @required this.map,
     @required this.query,
@@ -225,41 +238,30 @@ class CountryName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-          padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
+        padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                  child: Container(
-                    child: Text(
-                      map[query].name,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Active",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurpleAccent),
+              ),
+              Text(
+                map[query].active.toString(),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 2,
-                    ),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: map[query].flag,
-                    imageBuilder: (context, imageProvider) => CircleAvatar(
-                      radius: 27.0,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: imageProvider,
-                    ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
-              ])),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
