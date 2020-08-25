@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covid19/objects/Worlddata.dart';
-import 'package:covid19/pages/ResultPage.dart';
 import 'package:flutter/material.dart';
 
 class CountrySearch extends SearchDelegate<Country> {
@@ -46,14 +45,15 @@ class CountrySearch extends SearchDelegate<Country> {
               child: Text('No Suggestion'),
             ),
           )
-        : ResultPage(map: map, query: query);
+        : buildSuggestions(context);
     return searchResult;
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    suggestion =
-        countries.where((String p) => p.toLowerCase().contains(query)).toList();
+    List<String> suggestion = countries
+        .where((String str) => compareTextToCountry(query: query, str: str))
+        .toList();
 
     return Column(
       children: <Widget>[
@@ -61,6 +61,12 @@ class CountrySearch extends SearchDelegate<Country> {
           child: ListView.builder(
             itemBuilder: (context, index) {
               return Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey[300],
+                  ),
+                  shape: BoxShape.rectangle,
+                ),
                 child: suggestionList(index, context),
               );
             },
@@ -71,6 +77,11 @@ class CountrySearch extends SearchDelegate<Country> {
     );
   }
 
+  // Compare typed text to country name to show suggestion
+  bool compareTextToCountry({String query, String str}) =>
+      str.toLowerCase().contains(query);
+
+  // Build list of suggestion
   ListTile suggestionList(int index, BuildContext context) {
     return ListTile(
       leading: Container(

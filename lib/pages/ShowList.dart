@@ -9,7 +9,9 @@ class ShowList extends StatefulWidget {
   final List<String> countries;
   final Map<String, Country> map;
 
-  ShowList({@required this.value, this.info, this.countries, this.map});
+  const ShowList(
+      {Key key, @required this.value, this.info, this.countries, this.map})
+      : super(key: key);
 
   @override
   _ShowListState createState() => _ShowListState();
@@ -150,7 +152,8 @@ class CountryList extends StatelessWidget {
               SizedBox(
                 height: 5.0,
               ),
-              RaisedButton(
+              MaterialButton(
+                color: Colors.grey[50],
                 padding: EdgeInsets.all(0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
