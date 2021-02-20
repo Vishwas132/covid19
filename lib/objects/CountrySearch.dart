@@ -51,7 +51,7 @@ class CountrySearch extends SearchDelegate<Country> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestion = countries
+    suggestion = countries
         .where((String str) => compareTextToCountry(query: query, str: str))
         .toList();
 

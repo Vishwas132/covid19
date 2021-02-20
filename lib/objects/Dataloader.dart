@@ -20,7 +20,7 @@ Future<Map<String, dynamic>> fetchall(http.Client client) async {
   return jsonDecode(response.body);
 }
 
-class Router {
+class Routing {
   List<String> _countries = [];
   HashMap<String, Country> _map = HashMap();
   Map<String, dynamic> _info = Map();

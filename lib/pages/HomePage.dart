@@ -16,7 +16,7 @@ class Worldwide extends StatefulWidget {
 }
 
 class _WorldwideState extends State<Worldwide> {
-  Router r = Router();
+  Routing r = Routing();
 
   @override
   Widget build(BuildContext context) {
