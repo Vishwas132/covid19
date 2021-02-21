@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covid19/objects/Worlddata.dart';
+import 'package:covid19/pages/ResultPage.dart';
 import 'package:flutter/material.dart';
 
 class CountrySearch extends SearchDelegate<Country> {
@@ -109,7 +110,15 @@ class CountrySearch extends SearchDelegate<Country> {
       ),
       onTap: () {
         query = suggestion[index];
-        showResults(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultPage(
+              map: map,
+              query: query,
+            ),
+          ),
+        );
       },
     );
   }
