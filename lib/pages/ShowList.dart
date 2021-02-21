@@ -174,7 +174,7 @@ class CountryList extends StatelessWidget {
                   ],
                 ),
                 onPressed: () {
-                  return Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ResultPage(
