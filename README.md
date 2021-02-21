@@ -5,7 +5,9 @@ A COVID-19 cases tracker application.
 ## Getting Started
 
 This project is a Flutter application that shows live stats of COVID-19.
+
 ![Alt Text](Demo/giphy1.gif)
+![Alt Text](Demo/giphy2.gif)
 
 A few resources to get you started with a Flutter project:
 
